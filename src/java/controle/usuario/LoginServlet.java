@@ -1,6 +1,7 @@
 package controle.usuario;
 
 import jakarta.servlet.RequestDispatcher;
+
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -21,9 +22,18 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
+        
+        if (login == null || login.trim().isEmpty() ||
+        senha == null || senha.trim().isEmpty()) {
+
+        request.setAttribute("mensagem", "Preencha login e senha.");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        return;
+        }
+        
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.obter(login);
         if (usuario != null && usuario.getSenha().equals(senha)) {
@@ -34,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("usuario", usuario);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("principal.jsp");
             requestDispatcher.forward(request, response);
-        } else {
+        }else {
             request.setAttribute("mensagem", "Login ou senha incorreta");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
             requestDispatcher.forward(request, response);
