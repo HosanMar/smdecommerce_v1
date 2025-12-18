@@ -5,10 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:include page="/partials/head.jsp" />
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="/partials/head.jsp" />
         <link rel="stylesheet" href="assets/style.css">
     </head>
     <body>

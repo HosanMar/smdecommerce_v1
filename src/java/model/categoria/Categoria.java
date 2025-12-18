@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.categoria;
 
 /**
@@ -10,7 +6,7 @@ package model.categoria;
  */
 public class Categoria {
     private Integer id;
-    private String descricao;
+    private String nome;
 
     public Integer getId(){
         return id;
@@ -20,12 +16,12 @@ public class Categoria {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

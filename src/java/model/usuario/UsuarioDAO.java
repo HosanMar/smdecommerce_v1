@@ -28,7 +28,7 @@ public class UsuarioDAO {
         boolean sucesso = false;
         try {
             Class.forName(JDBC_DRIVER);
-            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO usuarios (nome, endereco, email, login, senha, administrador) VALUES (?, ?, ?, ?, ?, false)")) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO usuario (nome, endereco, email, login, senha, administrador) VALUES (?, ?, ?, ?, ?, false)")) {
                 preparedStatement.setString(1, nome);
                 preparedStatement.setString(2, endereco);
                 preparedStatement.setString(3, email);
@@ -58,7 +58,7 @@ public class UsuarioDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET nome = ?, endereco = ?, email = ?, login = ?, senha = ? WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuario SET nome = ?, endereco = ?, email = ?, login = ?, senha = ? WHERE id = ?");
             preparedStatement.setString(1, nome);
             preparedStatement.setString(2, endereco);
             preparedStatement.setString(3, email);
@@ -85,7 +85,7 @@ public class UsuarioDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM usuarios WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM usuario WHERE id = ?");
             preparedStatement.setInt(1, id);
             sucesso = (preparedStatement.executeUpdate() == 1);
             preparedStatement.close();
@@ -107,7 +107,7 @@ public class UsuarioDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, endereco, email, login, senha, administrador FROM usuarios WHERE login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nome, endereco, email, login, senha, administrador FROM usuario WHERE login = ?");
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

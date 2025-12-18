@@ -1,42 +1,67 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.produto;
+
+import model.categoria.Categoria;
 
 /**
  *
  * @author gal
  */
 public class Produto {
+    
     private Integer id;
-   private String descricao;
-   private Double preco;
-
-   public Produto() {
-   }
+    private String descricao;
+    private Double preco;
+    private String foto;
+    private Integer quantidade;
+    private Categoria categoria;
 
    public Integer getId() {
-      return this.id;
-   }
+        return id;
+    }
 
-   public void setId(Integer id) {
-      this.id = id;
-   }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-   public String getDescricao() {
-      return this.descricao;
-   }
+    public String getDescricao() {
+        return descricao;
+    }
 
-   public void setDescricao(String descricao) {
-      this.descricao = descricao;
-   }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-   public Double getPreco() {
-      return this.preco;
-   }
+    public Double getPreco() {
+        return preco;
+    }
 
-   public void setPreco(Double preco) {
-      this.preco = preco;
-   }
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    
 }

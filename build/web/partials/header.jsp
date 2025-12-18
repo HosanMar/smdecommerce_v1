@@ -3,38 +3,45 @@
     Created on : Nov 13, 2025, 12:48:48 PM
     Author     : gal
 --%>
+
 <%@page import="model.usuario.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    if (session.getAttribute("usuario") != null) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
 %>
 <!DOCTYPE html>
 <html>
+    
     <header class="border-bottom">
 
       <!-- Linha superior (navbar) -->
       <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand fw-bold" href="#">Logo</a>
+          <a class="navbar-brand fw-bold" href="principal.jsp">Logo</a>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form> 
             <div>
-                <a href="#" class="text-muted me-2">Olá, <%=usuario.getNome()%></a>
-                <a href="atualizarUsuario.jsp" class="text-muted">Dados pessoais</a>
-                <a href="Logout" class="text-muted">Sair</a>
+                    <a href="#" class="text-muted me-2">Olá, <%=usuario.getNome()%></a>
+                    <a href="#" class="text-muted me-2">Admin: <%=usuario.getAdministrador()%></a>
+                    <a href="Logout" class="text-muted">Sair</a>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Opções de Conta
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="atualizarUsuario.jsp">Atualizar Dados</a></li>
+<!--                    <li><a class="dropdown-item" href="listarCategoria.jsp">Cadastrar Categorias</a></li>
+                        <li><a class="dropdown-item" href="listarProduto.jsp">Cadastrar Produtos</a></li>-->
+                        <li><a class="dropdown-item" href="RemoverUsuario?id=<%= usuario.getId()%>">Remover conta</a></li>
+                    </ul>
+                    </li>
+                
+              
             </div>
         </div>
       </nav>
-<%--       
-<!--        <h1>Olá, <%= usuario.getNome()%></h1>
-        <h3>Você é um <%= usuario.getAdministrador() ? "Administrador" : "Cliente" %></h3>
-        <a href="RemoverUsuario?id=<%= usuario.getId()%>">Remover Conta</a>
-        <a href="atualizarUsuario.jsp">Atualizar Conta</a>
-        <a href="Logout">Sair</a>-->
-            --%>
         <!-- Linha inferior -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -86,21 +93,4 @@
     </header>
 
 
-
-
-<!--    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>-->
 </html>
-
-<%
-    } else {
-        request.setAttribute("mensagem", "Você não tem permissão para acessar este recurso");
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
-        requestDispatcher.forward(request, response);
-    }
-%>

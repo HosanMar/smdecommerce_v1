@@ -22,10 +22,15 @@ public class SegurancaFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException{
+        
         HttpServletRequest req = (HttpServletRequest) request;
         System.out.println(req.getRequestURI());
-        if (req.getRequestURI().equals(req.getServletContext().getContextPath() + "/" + "principal.jsp") || req.getRequestURI().equals(req.getServletContext().getContextPath() + "/" + "atualizarUsuario.jsp")) {
+        
+        if (req.getRequestURI().equals(req.getServletContext().getContextPath() + "/" + "principal.jsp") 
+                || req.getRequestURI().equals(req.getServletContext().getContextPath() + "/" + "atualizarUsuario.jsp")) {
+            
             HttpSession session = req.getSession();
+            
             if (session.getAttribute("usuario") != null && session.getAttribute("usuario") instanceof Usuario) {
                 chain.doFilter(req, response);  
             } else {

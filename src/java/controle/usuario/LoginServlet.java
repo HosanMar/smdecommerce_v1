@@ -9,6 +9,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.categoria.Categoria;
+import model.categoria.CategoriaDAO;
+import model.produto.Produto;
+import model.produto.ProdutoDAO;
 import model.usuario.Usuario;
 import model.usuario.UsuarioDAO;
 
@@ -34,6 +39,14 @@ public class LoginServlet extends HttpServlet {
         return;
         }
         
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        List<Produto> produtos = produtoDAO.obterTodos();
+        
+        request.setAttribute("produtos", produtos);
+        CategoriaDAO categoriaDAO = new CategoriaDAO();
+        List<Categoria> categorias = categoriaDAO.obterTodas();
+        request.setAttribute("categorias", categorias);
+        
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.obter(login);
         if (usuario != null && usuario.getSenha().equals(senha)) {
@@ -42,8 +55,14 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(c);
             HttpSession session = request.getSession(true);
             session.setAttribute("usuario", usuario);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("principal.jsp");
-            requestDispatcher.forward(request, response);
+            if(usuario.getAdministrador()){
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("principalAdmin.jsp");
+                requestDispatcher.forward(request, response);
+            } else {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("principal.jsp");
+                requestDispatcher.forward(request, response);
+            }
+            
         }else {
             request.setAttribute("mensagem", "Login ou senha incorreta");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");

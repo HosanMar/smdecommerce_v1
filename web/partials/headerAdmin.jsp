@@ -1,6 +1,6 @@
 <%-- 
-    Document   : header
-    Created on : Nov 13, 2025, 12:48:48 PM
+    Document   : headerAdmin
+    Created on : Dec 15, 2025, 10:49:52 PM
     Author     : gal
 --%>
 
@@ -17,7 +17,7 @@
       <!-- Linha superior (navbar) -->
       <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand fw-bold" href="principal.jsp">Logo</a>
+          <a class="navbar-brand fw-bold" href="principalAdmin.jsp">Logo</a>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -32,8 +32,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="atualizarUsuario.jsp">Atualizar Dados</a></li>
-<!--                    <li><a class="dropdown-item" href="listarCategoria.jsp">Cadastrar Categorias</a></li>
-                        <li><a class="dropdown-item" href="listarProduto.jsp">Cadastrar Produtos</a></li>-->
+                        <li><a class="dropdown-item" href="listarCategoria.jsp">Cadastrar Categorias</a></li>
+                        <li><a class="dropdown-item" href="listarProduto.jsp">Cadastrar Produtos</a></li>
                         <li><a class="dropdown-item" href="RemoverUsuario?id=<%= usuario.getId()%>">Remover conta</a></li>
                     </ul>
                     </li>

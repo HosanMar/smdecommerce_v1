@@ -6,24 +6,25 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.categoria.Categoria;
 import model.categoria.CategoriaDAO;
 
 /**
  *
  * @author gal
  */
-@WebServlet("/AtualizarCategoria")
-public class AtualizarCategoriaServlet extends HttpServlet {
-    
+
+@WebServlet("/ListarCategoria")
+public class ListarCategoriaServlet extends HttpServlet {
     
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String nome = request.getParameter("nome");
         CategoriaDAO categoriaDAO = new CategoriaDAO();
-        boolean sucesso = categoriaDAO.atualizar(nome, id);
-        request.setAttribute("mensagem", sucesso ? "Registro atualizado com sucesso" : "Não foi possível atualizar o registro");
-        request.getRequestDispatcher("ListarCategoria").forward(request, response);
+        List<Categoria> categorias = categoriaDAO.obterTodas();
+        
+        request.setAttribute("categorias", categorias);
+        request.getRequestDispatcher("listarCategoria.jsp").forward(request, response);
     }
 }
